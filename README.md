@@ -4,10 +4,10 @@
 
 ## Introduction
 
-The objective is to design a neural network architecture that can segment convex objects into the foreground and background of an image based on user-provided scribbles, incorporating a convexity prior. Convexity prior refers to the assumption that objects or regions in an image are often convex in shape, meaning they have a smooth and continuous boundary without concave regions.
+simple architecture for segmenting convex objects in images using user-provided scribbles. The proposed approach involves a primary model to segment pixels into foreground and background regions. The primary model’s output is subsequently passed to a Convex network, which refines the foreground pixels to adhere to the convexity prior, assuming smooth and continuous boundaries without concave regions. The architecture achieves memory efficiency and does not require training on a vast number of images, making it suitable for practical applications with limited computational resources.
 This has been accomplished using two approaches:
-• Approach 1: Generating the convex segmented image using fully connected network and convex network architecture.
-• Approach 2: : Generating the convex segmented image using pre-trained segmentation network and convex network architecture.
+• Approach 1: Generating the convex segmented image using a fully connected network and convex network architecture.
+• Approach 2: Generating the convex segmented image using a pre-trained segmentation network and convex network architecture.
 
 ## Requirements
 
@@ -15,7 +15,7 @@ See requirements.txt file
 
 ## Setup
 
-1.  Install PyTorch and other required python libraries in a virtual environment with:
+1.  Install PyTorch and other required Python libraries in a virtual environment with:
 
     ```
     pip install -r requirements.txt
@@ -23,16 +23,16 @@ See requirements.txt file
 
 2.  Collect Data:
 
-    Foreground and background scribbles to be made on Image that need to be segmented. Save them in the data folder.
+    Foreground and background scribbles are to be made on Images that need to be segmented. Save them in the data folder.
 
-    For example data floder contains folder single_apple that contains the input image, scribble_fg and scribble_bg.
+    For example, data floder contains the folder single_apple which contains the input image, scribble_fg and scribble_bg.
     
-    All the data to be stored in the similar way.
+    All the data to be stored in a similar way.
     
 
 ## Usage
 
-`python main.py` executes and runs the code with all the defaults arguments.
+`python main.py` executes and runs the code with all the default arguments.
 
 For changing the default arguments follow the below instructions:
 
@@ -42,13 +42,13 @@ For changing the default arguments follow the below instructions:
 
 2. Primary model selection: 
 
-    Neural net as primary model: `python main.py -pm neuralnet`
+    Neural net as a primary model: `python main.py -pm neuralnet`
 
-    Segmentation net as primary model : `python main.py -pm segmentationnet`
+    Segmentation net as a primary model: `python main.py -pm segmentationnet`
 
 3. Primary model parameters:
     
-    Batch size, epochs, learning rate, hidden units are some of the neural net parameters that can be altered through command line.
+    Batch size, epochs, learning rate, and hidden units are some of the neural net parameters that can be altered through command line.
 
     `python main.py -pm neuralnet -nnbs 64 -nne 100 -nnlr 0.00001 -nnhu 256`
 
